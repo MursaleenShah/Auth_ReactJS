@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, setPassword } from "../redux/user/userSlice";
+import { setEmail, setPassword ,setName} from "../redux/user/userSlice";
 import Home from "./Home";
 import "../components.css";
 
@@ -28,6 +28,7 @@ export default function Login() {
       storedUser.email === email &&
       storedUser.password === password
     ) {
+      dispatch(setName(storedUser.name));
       dispatch(setEmail(email));
       dispatch(setPassword(password));
       //<Home />
