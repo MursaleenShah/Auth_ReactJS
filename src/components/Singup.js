@@ -17,8 +17,26 @@ export default function Singup() {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const validateEmail = (email) => {
+    // Regular expression for email validation
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+
+
+
+
   const handleSignup = () => {
     const { name, email, password } = formData;
+    if (!validateEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+
+
+
     if (!name || !email || !password) {
       console.log("Please fill in all fields.");
       alert("Please fill in all fields.");
