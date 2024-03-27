@@ -2,8 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setName, setEmail, setPassword } from "../redux/user/userSlice";
+import {
+  setName,
+  setEmail,
+  setPassword,
+  setAuthenticated,
+} from "../redux/user/userSlice";
 import "../components.css";
+import Home from "./Home";
 export default function Singup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,19 +29,12 @@ export default function Singup() {
     return regex.test(email);
   };
 
-
-
-
-
   const handleSignup = () => {
     const { name, email, password } = formData;
     if (!validateEmail(email)) {
       alert("Please enter a valid email address.");
       return;
     }
-
-
-
 
     if (!name || !email || !password) {
       console.log("Please fill in all fields.");
@@ -47,10 +46,12 @@ export default function Singup() {
     dispatch(setName(name));
     dispatch(setEmail(email));
     dispatch(setPassword(password));
+    dispatch(setAuthenticated(true));
 
     // Save user details to local storage
     localStorage.setItem("user", JSON.stringify({ name, email, password }));
     // Navigate to home component
+
     navigate("/home");
   };
 

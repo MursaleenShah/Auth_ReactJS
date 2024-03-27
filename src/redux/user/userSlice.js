@@ -4,7 +4,7 @@ const initialState = {
   name: "",
   email: "",
   password: "",
-  isAuthenticated: false, //added
+  isAuthenticated: false, 
 };
 
 const userSlice = createSlice({
@@ -20,16 +20,18 @@ const userSlice = createSlice({
     setPassword: (state, action) => {
       state.password = action.payload;
     },
-    //added
+    setAuthenticated: (state, action) => {
+      state.isAuthenticated = action.payload;
+    },
+    
     logout: (state) => {
       state.name = "";
       state.email = "";
       state.password = "";
-      state.isAuthenticated = false; // Only reset authentication status
     },
   },
 });
 
-export const { setName, setEmail, setPassword, logout } = userSlice.actions;
+export const { setName, setEmail, setPassword, logout,setAuthenticated } = userSlice.actions;
 export const selectUser = (state) => state.user;
 export default userSlice.reducer;
